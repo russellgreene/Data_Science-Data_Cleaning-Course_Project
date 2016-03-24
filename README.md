@@ -18,4 +18,5 @@ It then:
 * Merges the training and test data sets into a single dataframe (Part 1)
 * Extracts only the mean and stddev and saves them into another dataframe (Part 2)
 * Replaces the activity numbers with factor names (Part 3)
-* And finally converts the data frame into a datatable and computes the mean of all features grouped by subject and activity using lapply.
+* It converts the data frame into a datatable and computes the mean of all features grouped by subject and activity using lapply.
+* Finally the step5.txt file is generated using the write.table command
