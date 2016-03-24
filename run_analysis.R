@@ -7,7 +7,7 @@
 
 
 ## Read in the list of features
-featuresFileName <- 'UCI HAR Dataset/features.txt'
+featuresFileName <- 'features.txt'
 featuresDF <- read.table(featuresFileName, stringsAsFactors = FALSE)
 colnames(featuresDF) <- c('featurenum', 'featurename')
 
@@ -19,20 +19,20 @@ featuresDF$featurename <- gsub("\\(", "_", featuresDF$featurename)
 featuresDF$featurename <- gsub("\\)", "", featuresDF$featurename)
 
 ## Read in the training set
-trainingFileName <- 'UCI HAR Dataset/train/X_train.txt'
+trainingFileName <- 'train/X_train.txt'
 trainingDF <- read.table(trainingFileName)
 colnames(trainingDF) <- featuresDF$featurename
-trainingSubjectFileName <- 'UCI HAR Dataset/train/subject_train.txt'
-activityNumFileName <- 'UCI HAR Dataset/train/y_train.txt'
+trainingSubjectFileName <- 'train/subject_train.txt'
+activityNumFileName <- 'train/y_train.txt'
 trainingDF["activityNum"] <- read.table(activityNumFileName)
 trainingDF["subject"] <- read.table(trainingSubjectFileName)
 
 ## Read in the test set
-testingFileName <- 'UCI HAR Dataset/test/X_test.txt'
+testingFileName <- 'test/X_test.txt'
 testingDF <- read.table(testingFileName)
 colnames(testingDF) <- featuresDF$featurename
-testingSubjectFileName <- 'UCI HAR Dataset/test/subject_test.txt'
-activityNumFileName <- 'UCI HAR Dataset/test/y_test.txt'
+testingSubjectFileName <- 'test/subject_test.txt'
+activityNumFileName <- 'test/y_test.txt'
 testingDF["activityNum"] <- read.table(activityNumFileName)
 testingDF["subject"] <- read.table(testingSubjectFileName)
 
@@ -76,3 +76,5 @@ totalDT <- data.table(totalDF)
 subjectActivityMeanDT <- totalDT[,lapply(.SD, mean, na.rm=TRUE),
                                  by=list(subject,activityName),
                                  .SDcols=featuresDF$featurename]
+
+write.table(subjectActivityMeanDT, 'step5.txt', row.name=FALSE)

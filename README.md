@@ -5,7 +5,7 @@
 
 There is only one script used in this project: **run_analysis.R**
 
-The script uses *relative* paths which means that it expects to be run in the top level directory which contains the **UCI HAR Dataset** subdirectory.  File names will not be found if it is run anywhere else.
+The script uses *relative* paths which means that it expects to be run from **within** the UCI HAR Dataset subdirectory.  Note this is the directory containing the data files.  File names will not be found if it is run anywhere else.
 
 The script will:
 * Read in the features.txt file
